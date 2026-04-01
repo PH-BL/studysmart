@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudySmart - App Studenti</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <h1>StudySmart</h1>
+    <p>Riassunti, quiz, flashcard, interrogazioni AI e assistente sempre attivo.</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>1) Inserisci appunti</h2>
+      <label for="notesInput">Testo appunti</label>
+      <textarea id="notesInput" class="mt-2 rounded-2xl border border-slate-700 bg-slate-950/80 p-4 text-slate-100 shadow-inner focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/40" placeholder="Incolla qui i tuoi appunti..."></textarea>
+
+      <div class="upload-row">
+        <label for="photoInput" class="inline-flex cursor-pointer items-center rounded-full bg-sky-500 px-5 py-2.5 text-sm font-semibold text-sky-950 shadow-lg shadow-sky-900/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-sky-400">Carica Foto Appunti</label>
+        <input id="photoInput" class="hidden" type="file" accept="image/*">
+        <span id="ocrStatus" class="muted">Nessuna foto caricata</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2) Strumenti studio</h2>
+      <div class="actions">
+        <button id="summarizeBtn" class="rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-emerald-950 shadow-lg shadow-emerald-900/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400">Genera Riassunto</button>
+        <button id="quizBtn" class="rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-emerald-950 shadow-lg shadow-emerald-900/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400">Genera Quiz</button>
+        <button id="flashcardsBtn" class="rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-emerald-950 shadow-lg shadow-emerald-900/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400">Genera Flashcards</button>
+      </div>
+      <div id="studyOutput" class="output"></div>
+    </section>
+
+    <section class="card">
+      <h2>3) Interrogazione AI</h2>
+      <p class="muted">L'AI ti fa domande in base ai tuoi appunti e corregge le risposte.</p>
+      <div class="actions">
+        <button id="startOralBtn" class="rounded-full bg-violet-500 px-5 py-2.5 text-sm font-semibold text-violet-950 shadow-lg shadow-violet-900/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-violet-400">Avvia Interrogazione</button>
+        <button id="nextQuestionBtn" class="rounded-full bg-violet-500 px-5 py-2.5 text-sm font-semibold text-violet-950 shadow-lg shadow-violet-900/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-violet-400" disabled>Prossima Domanda</button>
+      </div>
+      <div id="oralQuestion" class="output"></div>
+      <label for="oralAnswer">La tua risposta</label>
+      <textarea id="oralAnswer" class="mt-2 rounded-2xl border border-slate-700 bg-slate-950/80 p-4 text-slate-100 shadow-inner focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-400/40" placeholder="Scrivi la tua risposta qui..."></textarea>
+      <button id="evaluateAnswerBtn" class="mt-3 rounded-full bg-violet-500 px-5 py-2.5 text-sm font-semibold text-violet-950 shadow-lg shadow-violet-900/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-violet-400" disabled>Valuta Risposta</button>
+      <div id="oralFeedback" class="output"></div>
+    </section>
+
+    <section class="card">
+      <h2>4) Assistente AI 24/7</h2>
+      <p class="muted">Chatta con il tutor per dubbi rapidi.</p>
+      <div id="chatBox" class="chat-box"></div>
+      <div class="chat-controls">
+        <input id="chatInput" class="rounded-2xl border border-slate-700 bg-slate-950/80 p-3 text-slate-100 shadow-inner focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/40" type="text" placeholder="Fai una domanda al tutor...">
+        <button id="sendChatBtn" class="rounded-full bg-cyan-500 px-5 py-2.5 text-sm font-semibold text-cyan-950 shadow-lg shadow-cyan-900/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-400">Invia</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>StudySmart MVP - Funziona in locale dal browser.</small>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
